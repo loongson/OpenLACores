@@ -1674,7 +1674,8 @@ assign inst_sub_trap_slt  =  inst_sub || inst_slt;
 assign inst_dbar  =  l_DBAR;
 assign inst_ibar  =  l_IBAR;
 `ifdef CONFIG_MMU
-assign inst_invtlb  =  inst[31:15] == 17'b00000110010010011;
+assign inst_invtlb  =  inst[31:15] == 17'b00000110010010011
+                       && inst[4:0] <= 5'd6;
 `endif
 
 assign inst_idle         =  l_IDLE;

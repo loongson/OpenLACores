@@ -324,7 +324,7 @@ genvar i;
     wire dbus_hit_vaddr_sel;
     wire [            3: 0] prid_revision_cpucfg;
     wire inst_cpucfg_cpucfg;
-    wire [           13: 0] cpucfg_addr_cpucfg;
+    wire [           31: 0] cpucfg_addr_cpucfg;
     wire [           31: 0] cpucfg_result_cpucfg;
     wire clk_mpu_region0;
     wire reset_mpu_region0;
@@ -740,7 +740,7 @@ assign mem_hit_dbus        =  dbus_hit_vaddr_sel;
 // x_csr_cpucfg
 assign prid_revision_cpucfg  =  prid_revision;
 assign inst_cpucfg_cpucfg    =  lisa_cpucfg;
-assign cpucfg_addr_cpucfg    =  result[13:0];
+assign cpucfg_addr_cpucfg    =  result;
 assign cpucfg_result         =  cpucfg_result_cpucfg;
 // x_mmu_mpu_0
 assign clk_mpu_region0               =  clk_cr;
@@ -1111,7 +1111,7 @@ csr_cpucfg #(
 ) x_csr_cpucfg (
     .prid_revision (prid_revision_cpucfg),
     .inst_cpucfg   (inst_cpucfg_cpucfg  ),
-    .cpucfg_addr   (cpucfg_addr_cpucfg  ),  ///[13:0]
+    .cpucfg_addr   (cpucfg_addr_cpucfg  ),  ///[31:0]
     .cpucfg_result (cpucfg_result_cpucfg)
 );
 assign csrrd_result  =  ( {32{csr0_ren  }} & csr_csr0  )
